@@ -92,7 +92,6 @@ namespace MetodologiaTP
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				Console.WriteLine("\n --- Clase #{1} ---", i);
 				p.hablarALaClase();
 				p.escribirEnElPizarron();
 			}
