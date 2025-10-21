@@ -2,50 +2,48 @@
 
 namespace MetodologiaTP
 {
-	//-Ejercicio 8-
-	public class ColeccionMultiple : IColeccionable
-	{
-		private Pila pila;
-		private Cola cola;
-		
-		
-		public ColeccionMultiple(Pila p, Cola c)
-		{
-			this.pila = p;
-			this.cola = c;
-		}
-		
-		public int cuantos(){
-			int suma = pila.cuantos() + cola.cuantos();
-			return suma;
-		}
-		
-		public IComparable minimo(){
-			if(pila.minimo().sosMenor(cola.minimo())) {
-				return pila.minimo();
-			}else {
-				return cola.minimo();
-			}
-		}
-		
-		public IComparable maximo(){
-			if(pila.maximo().sosMayor(cola.maximo())) {
-				return pila.maximo();
-			}else {
-				return cola.maximo();
-			}
-		}
-		
-		public void agregar(IComparable c){
-			//Vacío por enunciado
-		}
-		
-		public bool contiene(IComparable c){
-			if (pila.contiene(c) || cola.contiene(c)) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-	}
+    public class ColeccionMultiple : IColeccionable
+    {
+        Pila pila;
+        Cola cola;
+
+        public ColeccionMultiple(Pila p, Cola c)
+        {
+            this.pila = p;
+            this.cola = c;
+        }
+
+        public int Cuantos() => this.pila.Cuantos() + this.cola.Cuantos();
+
+        public IComparable Minimo()
+        {
+            if (pila.Minimo().SosMenor(cola.Minimo()))
+            {
+                return pila.Minimo();
+            }
+            else
+            {
+                return cola.Minimo();
+            }
+        }
+
+        public IComparable Maximo()
+        {
+            if (pila.Maximo().SosMayor(cola.Maximo()))
+            {
+                return pila.Maximo();
+            }
+            else
+            {
+                return cola.Maximo();
+            }
+        }
+
+        public void Agregar(IComparable c)
+        {
+            
+        }
+
+        public bool Contiene(IComparable c) => pila.Contiene(c) || cola.Contiene(c);
+    }
 }

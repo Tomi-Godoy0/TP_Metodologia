@@ -1,32 +1,18 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
 namespace MetodologiaTP
 {
-	//-Ejercicio 4-
-    public class Cola : IColeccionable, IIterable // Es una colección FIFO (First In, First Out)
+    public class Conjunto : IColeccionable, IIterable
     {
-        private List<IComparable> elementos;
+        private List<IComparable> elementos = new List<IComparable>();
 
-        public Cola()
+        public void Agregar(IComparable c)
         {
-            this.elementos = new List<IComparable>();
+            if (!Contiene(c))
+            {
+                this.elementos.Add(c);
+            }
         }
 
-        public void Encolar(IComparable c)
-        {
-            this.elementos.Add(c);
-        }
-
-        public IComparable Desencolar()
-        {
-            IComparable aux = this.elementos[0];
-
-            this.elementos.RemoveAt(0);
-
-            return aux;
-        }
+        public bool Pertenece(IComparable c) => Contiene(c);
 
         public int Cuantos() => this.elementos.Count();
 
@@ -42,7 +28,6 @@ namespace MetodologiaTP
                     minActual = elementos[i];
                 }
             }
-
             return minActual;
         }
 
@@ -58,20 +43,14 @@ namespace MetodologiaTP
                     maxActual = elementos[i];
                 }
             }
-
             return maxActual;
-        }
-
-        public void Agregar(IComparable c)
-        {
-            this.Encolar(c);
         }
 
         public bool Contiene(IComparable c)
         {
-            foreach (IComparable e in elementos)
+            foreach (IComparable i in elementos)
             {
-                if (e.SosIgual(c))
+                if (i.SosIgual(c))
                 {
                     return true;
                 }

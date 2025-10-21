@@ -12,8 +12,8 @@ Su finalidad es **implementar diferentes patrones de diseño**, con el objetivo 
 
 ## 📚 Clases
 - [x] Clase 1: Implementación de interfaces
-- [ ] Clase 2: Patrón Strategy y Iterator 
-- [ ] Clase 3: Patrón Factory method y Observer
+- [x] Clase 2: Patrón Strategy y Iterator 
+- [x] Clase 3: Patrón Factory method y Observer
 - [ ] Clase 4: Patrón Adapter y Decorator
 - [ ] Clase 5: Patrón Proxy y Command
 - [ ] Clase 6: Patrón Composite y Template Method

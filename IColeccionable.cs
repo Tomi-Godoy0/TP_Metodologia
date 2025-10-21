@@ -3,12 +3,12 @@
 namespace MetodologiaTP
 {
 	//-Ejercicio 3-
-	public interface IColeccionable
-	{
-		int cuantos();
-		IComparable	minimo();
-		IComparable maximo();
-		void agregar(IComparable c);
-		bool contiene(IComparable c);
-	}
+    public interface IColeccionable
+    {
+        int Cuantos();
+        IComparable Minimo();
+        IComparable Maximo();
+        void Agregar(IComparable c);
+        bool Contiene(IComparable c);
+    }
 }
