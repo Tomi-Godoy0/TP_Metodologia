@@ -6,40 +6,75 @@ namespace MetodologiaTP
 	{
 		public static void Main(string[] args)
 		{
-			//Ejercicio 6
-			Pila p4 = new Pila();
-			Console.WriteLine("Seleccione que tipo de objeto deseas crear: ");
-			Console.WriteLine("1 - Números");
-			Console.WriteLine("2 - Alumnos");
-			//Ejercicio 9 
-			Console.WriteLine("3 - Profesor");
-			Console.WriteLine("----------------------------");
+			// //Ejercicio 6
+			// Pila p4 = new Pila();
+			// Console.WriteLine("Seleccione que tipo de objeto deseas crear: ");
+			// Console.WriteLine("1 - Números");
+			// Console.WriteLine("2 - Alumnos");
+			// //Ejercicio 9 
+			// Console.WriteLine("3 - Profesor");
+			// Console.WriteLine("----------------------------");
 
-			int opcion = int.Parse(Console.ReadLine());
+			// int opcion = int.Parse(Console.ReadLine());
 
-			Console.WriteLine("=================LLenando Colección=================");
-			Llenar(p4, opcion);
-			Console.WriteLine("Colección llena con 20 elementos.");
-			Informar(p4, opcion);
+			// Console.WriteLine("=================LLenando Colección=================");
+			// Llenar(p4, opcion);
+			// Console.WriteLine("Colección llena con 20 elementos.");
+			// Informar(p4, opcion);
 
-			Console.WriteLine("\n================= PROGRAMA FINALIZADO =================");
+			// Console.WriteLine("\n================= PROGRAMA FINALIZADO =================");
 
-			//Ejercicio 14
-			GeneradorDeDatosAleatorios gen = new GeneradorDeDatosAleatorios();
+			// //Ejercicio 14
+			// GeneradorDeDatosAleatorios gen = new GeneradorDeDatosAleatorios();
 
-			Profesor p1 = new Profesor(gen.stringAleatorio(), gen.numeroAleatorio(40000000), gen.numeroAleatorio(25));
+			// Profesor p1 = new Profesor(gen.stringAleatorio(), gen.numeroAleatorio(40000000), gen.numeroAleatorio(25));
 
-			FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos(); //Creo la fabrica afuera para que se instancie solo una vez
-			List<Alumno> listAlum = new List<Alumno>();
-			for (int i = 0; i < 20; i++)
-			{
-				Alumno alu = (Alumno)fabricaAlu.crearAleatorio();
-				listAlum.Add(alu);
-				p1.agregarObservador(alu);
-			}
+			// FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos(); //Creo la fabrica afuera para que se instancie solo una vez
+			// List<Alumno> listAlum = new List<Alumno>();
+			// for (int i = 0; i < 20; i++)
+			// {
+			// 	Alumno alu = (Alumno)fabricaAlu.crearAleatorio();
+			// 	listAlum.Add(alu);
+			// 	p1.agregarObservador(alu);
+			// }
 
-			Console.WriteLine("-Los alumnos observan al profesor-");
-			dictadoDeClases(p1);
+			// Console.WriteLine("-Los alumnos observan al profesor-");
+			// dictadoDeClases(p1);
+
+			//// Clase 4 - Ejercicio 4
+            Student student;
+            Teacher t1 = new Teacher();
+            IAlumno alumno;
+
+            FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos();
+            for (int i = 0; i < 20; i++)
+            {
+                if (i < 10)
+                {
+                    alumno = (IAlumno)FabricaDeComparables.crearAleatorio(2);
+                    // Clase 4 - Ejercicio 7 y 8
+                    IAlumno decorado = new DecoradorLegajo(alumno);
+                    decorado = new DecoradorLetras(decorado);
+                    decorado = new DecoradorOrden(decorado);
+                    decorado = new DecoradorPromocion(decorado);
+                    decorado = new DecoradorAsteriscos(decorado);
+                    student = new AlumnoAdapter(decorado);
+                }
+                else
+                {
+                    AlumnoMuyEstudioso alumnoEstudioso = (AlumnoMuyEstudioso)fabricaAlu.crearAleatorioEstudioso();
+
+                    IAlumno decorado = new DecoradorLetras(alumnoEstudioso);
+                    decorado = new DecoradorPromocion(decorado);
+					decorado = new DecoradorAsteriscos(decorado);
+					
+
+                    student = new AlumnoAdapter(decorado);
+                }
+                t1.goToClass(student);
+            }
+
+            t1.teachingAClass();
 		}
 
 		private static Random rnd = new Random(); //Funciona mediante el reloj del sistema por lo cuál si lo pongo en "Llenar" utiliza los mismos números en pila y cola.

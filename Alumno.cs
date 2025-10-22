@@ -3,16 +3,20 @@
 namespace MetodologiaTP
 {
 	//Ejercicio 12
- public class Alumno : Persona, IObservador 
+ public class Alumno : Persona, IObservador, IAlumno 
 	{
         private int legajo;
         private double promedio;
         private IEstrategiaComparacion estrategia = new EstrategiaPorLegajo();
+        // Clase 4 - Ejercicio 1
+        private int calificacion;
         public Alumno(string n, int d, int l, double p) : base(n, d)
         {
             this.legajo = l;
             this.promedio = p;
         }
+
+        public string getNombre() => this.Nombre;
 
         public int Legajo
         {
@@ -22,6 +26,12 @@ namespace MetodologiaTP
         public double Promedio
         {
             get { return this.promedio; }
+        }
+
+        public int Calificacion
+        {
+            get { return this.calificacion; }
+            set { this.calificacion = value; }
         }
 
         public void SetEstrategia(IEstrategiaComparacion n)
@@ -72,13 +82,18 @@ namespace MetodologiaTP
                 this.distraerse();
             }
         }
+        
+        // Clase 4 - Ejercicio 1
+        public virtual int responderPregunta(int preg)
+        {
+            Random rnd = new Random();
 
+            return rnd.Next(1, 4);
+        }
 
-        //Comparación por legajo 
-        // public override bool SosIgual(IComparable c) => this.Legajo == ((Alumno)c).Legajo;
-
-        // public override bool SosMenor(IComparable c) => this.Legajo < ((Alumno)c).Legajo;
-
-        // public override bool SosMayor(IComparable c) => this.Legajo > ((Alumno)c).Legajo;
+        public virtual string mostrarCalificacion()
+        {
+            return $"{this.Nombre} {this.calificacion}";
+        }
 	}
 }

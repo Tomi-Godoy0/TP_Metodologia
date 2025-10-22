@@ -28,5 +28,16 @@ namespace MetodologiaTP
 
             return new Alumno(nombre, dni, legajo, promedio);
         }
+
+        public IComparable crearAleatorioEstudioso() //Método para crear alumnos estudiosos
+        {
+            string nombre = generador.stringAleatorio();
+            int dni = generador.numeroAleatorio(50000000);
+            int legajo = generador.numeroAleatorio(999999);
+            int promedio = generador.numeroAleatorio(10);
+
+
+            return new AlumnoMuyEstudioso(nombre, dni, legajo, promedio);
+        }
     }
 }
