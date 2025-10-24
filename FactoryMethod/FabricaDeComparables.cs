@@ -45,6 +45,7 @@ namespace MetodologiaTP
                 case 1: return new FabricaDeNumeros();
                 case 2: return new FabricaDeAlumnos();
                 case 3: return new FabricaDeProfesor();
+                case 4: return new FabricaDeAlumnosMuyEstudiosos();
                 default: return null;
             }
         }

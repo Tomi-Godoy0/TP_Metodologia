@@ -2,13 +2,11 @@
 
 namespace MetodologiaTP
 {
-	//Ejercicio 12
  public class Alumno : Persona, IObservador, IAlumno 
 	{
         private int legajo;
         private double promedio;
         private IEstrategiaComparacion estrategia = new EstrategiaPorLegajo();
-        // Clase 4 - Ejercicio 1
         private int calificacion;
         public Alumno(string n, int d, int l, double p) : base(n, d)
         {
@@ -17,6 +15,8 @@ namespace MetodologiaTP
         }
 
         public string getNombre() => this.Nombre;
+
+        public void setNombre(string nombre) => this.Nombre = nombre;
 
         public int Legajo
         {
@@ -50,7 +50,6 @@ namespace MetodologiaTP
         public override bool SosMenor(IComparable c) => estrategia.SosMenor(this, (Alumno)c);
         public override bool SosMayor(IComparable c) => estrategia.SosMayor(this, (Alumno)c);
 
-        //Ejercicio 11
         public void prestarAtencion()
         {
             Console.WriteLine("Prestando atención...");
@@ -83,7 +82,6 @@ namespace MetodologiaTP
             }
         }
         
-        // Clase 4 - Ejercicio 1
         public virtual int responderPregunta(int preg)
         {
             Random rnd = new Random();

@@ -2,7 +2,6 @@
 
 namespace MetodologiaTP
 {
-	//Ejercicio 11
     public abstract class Persona : IComparable
     {
         private string nombre;
@@ -17,6 +16,7 @@ namespace MetodologiaTP
         public string Nombre
         {
             get { return this.nombre; }
+            set { this.nombre = value; } //Se agrego el setter de nombre.
         }
 
         public int DNI

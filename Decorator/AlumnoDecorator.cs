@@ -13,6 +13,8 @@ namespace MetodologiaTP
 
         public string getNombre() => adicional.getNombre();
 
+        public void setNombre(string n) => this.adicional.setNombre(n);
+
         public int Legajo
         {
             get { return adicional.Legajo; }

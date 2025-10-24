@@ -6,53 +6,19 @@ namespace MetodologiaTP
 	{
 		public static void Main(string[] args)
 		{
-			// //Ejercicio 6
-			// Pila p4 = new Pila();
-			// Console.WriteLine("Seleccione que tipo de objeto deseas crear: ");
-			// Console.WriteLine("1 - Números");
-			// Console.WriteLine("2 - Alumnos");
-			// //Ejercicio 9 
-			// Console.WriteLine("3 - Profesor");
-			// Console.WriteLine("----------------------------");
-
-			// int opcion = int.Parse(Console.ReadLine());
-
-			// Console.WriteLine("=================LLenando Colección=================");
-			// Llenar(p4, opcion);
-			// Console.WriteLine("Colección llena con 20 elementos.");
-			// Informar(p4, opcion);
-
-			// Console.WriteLine("\n================= PROGRAMA FINALIZADO =================");
-
-			// //Ejercicio 14
-			// GeneradorDeDatosAleatorios gen = new GeneradorDeDatosAleatorios();
-
-			// Profesor p1 = new Profesor(gen.stringAleatorio(), gen.numeroAleatorio(40000000), gen.numeroAleatorio(25));
-
-			// FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos(); //Creo la fabrica afuera para que se instancie solo una vez
-			// List<Alumno> listAlum = new List<Alumno>();
-			// for (int i = 0; i < 20; i++)
-			// {
-			// 	Alumno alu = (Alumno)fabricaAlu.crearAleatorio();
-			// 	listAlum.Add(alu);
-			// 	p1.agregarObservador(alu);
-			// }
-
-			// Console.WriteLine("-Los alumnos observan al profesor-");
-			// dictadoDeClases(p1);
-
-			//// Clase 4 - Ejercicio 4
             Student student;
             Teacher t1 = new Teacher();
             IAlumno alumno;
 
-            FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos();
+            // FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos();
             for (int i = 0; i < 20; i++)
             {
                 if (i < 10)
                 {
-                    alumno = (IAlumno)FabricaDeComparables.crearAleatorio(2);
-                    // Clase 4 - Ejercicio 7 y 8
+					alumno = (IAlumno)FabricaDeComparables.crearAleatorio(2);
+            		//Clase 5 - Ejercicio 2
+					alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 2);
+					
                     IAlumno decorado = new DecoradorLegajo(alumno);
                     decorado = new DecoradorLetras(decorado);
                     decorado = new DecoradorOrden(decorado);
@@ -61,10 +27,12 @@ namespace MetodologiaTP
                     student = new AlumnoAdapter(decorado);
                 }
                 else
-                {
-                    AlumnoMuyEstudioso alumnoEstudioso = (AlumnoMuyEstudioso)fabricaAlu.crearAleatorioEstudioso();
+				{
+                    // AlumnoMuyEstudioso alumnoEstudioso = (AlumnoMuyEstudioso)fabricaAlu.crearAleatorioEstudioso();
+					//Crea alumno muy estudiosos
+            		alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 4);
 
-                    IAlumno decorado = new DecoradorLetras(alumnoEstudioso);
+                    IAlumno decorado = new DecoradorLetras(alumno);
                     decorado = new DecoradorPromocion(decorado);
 					decorado = new DecoradorAsteriscos(decorado);
 					
@@ -73,7 +41,6 @@ namespace MetodologiaTP
                 }
                 t1.goToClass(student);
             }
-
             t1.teachingAClass();
 		}
 
