@@ -6,47 +6,72 @@ namespace MetodologiaTP
 	{
 		public static void Main(string[] args)
 		{
-            Student student;
-            Teacher t1 = new Teacher();
-            IAlumno alumno;
+            // Student student;
+            // Teacher t1 = new Teacher();
+            // IAlumno alumno;
 
-            // FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos();
-            for (int i = 0; i < 20; i++)
-            {
-                if (i < 10)
-                {
-					alumno = (IAlumno)FabricaDeComparables.crearAleatorio(2);
-            		//Clase 5 - Ejercicio 2
-					alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 2);
+            // // FabricaDeAlumnos fabricaAlu = new FabricaDeAlumnos();
+            // for (int i = 0; i < 20; i++)
+            // {
+            //     if (i < 10)
+            //     {
+			// 		alumno = (IAlumno)FabricaDeComparables.crearAleatorio(2);
+            // 		//Clase 5 - Ejercicio 2
+			// 		alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 2);
 					
-                    IAlumno decorado = new DecoradorLegajo(alumno);
-                    decorado = new DecoradorLetras(decorado);
-                    decorado = new DecoradorOrden(decorado);
-                    decorado = new DecoradorPromocion(decorado);
-                    decorado = new DecoradorAsteriscos(decorado);
-                    student = new AlumnoAdapter(decorado);
-                }
-                else
-				{
-                    // AlumnoMuyEstudioso alumnoEstudioso = (AlumnoMuyEstudioso)fabricaAlu.crearAleatorioEstudioso();
-					//Crea alumno muy estudiosos
-            		alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 4);
+            //         IAlumno decorado = new DecoradorLegajo(alumno);
+            //         decorado = new DecoradorLetras(decorado);
+            //         decorado = new DecoradorOrden(decorado);
+            //         decorado = new DecoradorPromocion(decorado);
+            //         decorado = new DecoradorAsteriscos(decorado);
+            //         student = new AlumnoAdapter(decorado);
+            //     }
+            //     else
+			// 	{
+            //         // AlumnoMuyEstudioso alumnoEstudioso = (AlumnoMuyEstudioso)fabricaAlu.crearAleatorioEstudioso();
+			// 		//Crea alumno muy estudiosos
+            // 		alumno = new AlumnoProxy(new GeneradorDeDatosAleatorios().stringAleatorio(6), 4);
 
-                    IAlumno decorado = new DecoradorLetras(alumno);
-                    decorado = new DecoradorPromocion(decorado);
-					decorado = new DecoradorAsteriscos(decorado);
+            //         IAlumno decorado = new DecoradorLetras(alumno);
+            //         decorado = new DecoradorPromocion(decorado);
+			// 		decorado = new DecoradorAsteriscos(decorado);
 					
 
-                    student = new AlumnoAdapter(decorado);
-                }
-                t1.goToClass(student);
-            }
-            t1.teachingAClass();
+            //         student = new AlumnoAdapter(decorado);
+            //     }
+            //     t1.goToClass(student);
+            // }
+            // t1.teachingAClass();
+
+            // Clase 5 - Ejercicio 10
+            // Prueba pila
+            Aula aula = new Aula();
+            Pila pila = new Pila();
+
+			Console.WriteLine("Prueba Pila");
+			pila.setOrdenInicio(new OrdenInicio(aula));
+            pila.setOrdenLlegaAlumno(new OrdenLlegaAlumno(aula));
+            pila.setOrdenAulaLlena(new OrdenAulaLlena(aula));
+            
+            Llenar(pila, 2);
+            Llenar(pila, 4);
+
+            // Prueba cola
+            Aula aula1 = new Aula();
+			Cola cola = new Cola();
+
+			Console.WriteLine("Prueba Cola");
+            cola.setOrdenInicio(new OrdenInicio(aula1));
+            cola.setOrdenLlegaAlumno(new OrdenLlegaAlumno(aula1));
+            cola.setOrdenAulaLlena(new OrdenAulaLlena(aula1));
+
+            Llenar(cola, 2);
+            Llenar(cola, 4);			
 		}
 
 		private static Random rnd = new Random(); //Funciona mediante el reloj del sistema por lo cuál si lo pongo en "Llenar" utiliza los mismos números en pila y cola.
 												  //En cambio poniendolo afuera lo que hace es inicializarse una sola vez y después sigue la secuencia.
-												  //- Ejercicio 6 -
+												  
 		public static void Llenar(IColeccionable col, int opcion)
 		{
 			for (int i = 0; i < 20; i++)
@@ -89,7 +114,6 @@ namespace MetodologiaTP
 			Console.WriteLine("-----------------------------------------------------\n");
 		}
 
-		//Ejercicio 13
 		public static void dictadoDeClases(Profesor p)
 		{
 			for (int i = 0; i < 5; i++)
